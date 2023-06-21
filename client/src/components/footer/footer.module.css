@@ -1,0 +1,37 @@
+.container {
+  height: 50px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+/* Media Queries for Responsive Layout */
+
+@media screen and (max-width: 768px) {
+  .container {
+    height: auto;
+    padding: 10px;
+    flex-direction: column;
+  }
+  
+  .social {
+    margin-top: 10px;
+    gap: 20px;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }
+}

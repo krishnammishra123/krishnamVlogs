@@ -1,0 +1,111 @@
+.mainTitle {
+  font-size: 100px;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.selectTitle {
+  margin: 25px 0px;
+}
+
+.items {
+  display: flex;
+  gap: 50px;
+}
+
+.item {
+  border: 5px solid #bbb;
+  border-radius: 5px;
+  width: 100%; /* Adjusted to take full width on small screens */
+  max-width: 355px; /* Added a maximum width for larger screens */
+  height: 420px;
+  position: relative;
+  background-size: cover !important;
+  margin-bottom: 20px;
+}
+
+.item:nth-child(1) {
+  background: url("/illustration.png");
+}
+
+.item:nth-child(2) {
+  background: url("/websites.jpg");
+}
+
+.item:nth-child(3) {
+  background: url("/apps.jpg");
+}
+
+.title {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}
+
+.item:hover .title {
+  color: #53c28b;
+}
+
+/* Media Queries for Responsive Layout */
+
+@media screen and (max-width: 767px) {
+  .mainTitle {
+    font-size: 60px;
+  }
+
+  .container {
+    padding: 0 10px; /* Adjusted to provide more space on small screens */
+  }
+
+  .items {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .item {
+    width: 100%;
+    max-width: none;
+  }
+
+  .title {
+    position: static;
+    font-size: 30px; /* Adjusted for better readability on small screens */
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .mainTitle {
+    font-size: 80px;
+  }
+
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .mainTitle {
+    font-size: 100px;
+  }
+
+  .container {
+    padding: 0 60px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .item {
+    width: 33%; /* Adjusted to display 3 items per row */
+    max-width: none;
+  }
+}
