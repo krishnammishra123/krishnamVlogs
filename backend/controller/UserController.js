@@ -24,7 +24,7 @@ const uploadBlogs = async (req, res) => {
   try {
     const insertData = new Blog({ title, desc, image: filename, content,userid});
    const data= await insertData.save();
-    res.status(200).json({ message: "Image Added Successfully",details:data });
+    res.status(200).json({ message: "Added Blog Successfully",details:data });
   } catch (err) {
     res.status(500).json({ message: "Something is wrong" });
   }

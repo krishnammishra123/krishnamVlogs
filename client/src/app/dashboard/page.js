@@ -1,5 +1,7 @@
 "use client";
 import { postBlogValidate } from "@/components/Validation/Validation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./page.module.css";
 import {
   UserHomeAuth,
@@ -99,9 +101,8 @@ const handleSubmit = async (e) => {
           "Content-Type": "multipart/form-data",
         },
       };
-      console.log(formData);
       const res = await blogAuth(formData, config);
-      console.log(res.data);
+      toast.success(res.data.message, { position: toast.POSITION.TOP_RIGHT });
       setBlogs((prevBlogs) => [res.data.details, ...prevBlogs]);
       setTitle("");
       setDesc("");
@@ -125,9 +126,18 @@ const handleSubmit = async (e) => {
 
   const handleDelete = async (id) => {
     try {
+      const userid = isBrowser ? localStorage.getItem("userid") : null;
+
+      // Check if the logged-in user is the owner of the blog
+      const blogToDelete = blogs.find((blog) => blog._id === id);
+      if (!blogToDelete || blogToDelete.userid !== userid) {
+         toast.warning("You can only delete your own blog posts.");
+        return;
+      }
       await deleteBlog(id)
         .then((res) => {
           setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
+          toast.success("Blog post deleted successfully.");
         })
         .catch((err) => {
           console.log(err);
@@ -139,6 +149,7 @@ const handleSubmit = async (e) => {
 
   return (
     <>
+      <ToastContainer />
       {logindata && role === "user" ? (
         <div className={styles.container}>
           <div className={styles.posts}>
@@ -160,7 +171,6 @@ const handleSubmit = async (e) => {
                   className={styles.delete}
                   onClick={() => handleDelete(blog._id)}
                 >
-                  {" "}
                   X
                 </span>
               </div>
